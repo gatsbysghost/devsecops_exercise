@@ -15,9 +15,15 @@ def valid_list(l: list):
 
 def main(args):
     all_args = ''.join(args[1:])
-    split_char = all_args.index(']') + 1
+    try:
+        split_char = all_args.index(']') + 1
+    except ValueError:
+        raise ValueError('This program takes two lists as input; no input lists were found.')
     list1 = literal_eval(all_args[:split_char])
-    list2 = literal_eval(all_args[split_char:])
+    try:
+        list2 = literal_eval(all_args[split_char:])
+    except SyntaxError:
+        raise ValueError('This program takes two lists as input; only one list was found.')
     print(sort_two_lists(list1, list2))
 
 if __name__ == '__main__':
