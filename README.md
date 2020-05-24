@@ -16,7 +16,7 @@ This program may be executed from the CLI like so:
 
 The output of this will be `[1, 2, 3, 4, 5, 6]`
 
-N.B., this functionality is only guaranteed to work in `bash`. Other shells may fail to parse the list arguments.
+N.B., this functionality is only guaranteed to work in `bash`. Other shells may fail to parse the list arguments (`zsh` is known to throw an error).
 
 ### Running the program in a Docker container
 
