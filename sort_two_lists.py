@@ -7,21 +7,25 @@ def sort_two_lists(list1: list, list2: list) -> list:
     # (including the empty list). Because we will give incorrect
     # output if the input lists are not sorted, here's some basic error checking
     if not valid_list(list1):
-        raise ValueError('Lists are expected to be sorted. {} is not sorted.'.format(list1))
+        raise ValueError('Lists are expected to be sorted and contain only digits: {}'.format(list1))
     if not valid_list(list2):
-        raise ValueError('Lists are expected to be sorted. {} is not sorted.'.format(list2))
+        raise ValueError('Lists are expected to be sorted and contain only digits: {}'.format(list2))
 
-    return list(merge(list1, list2)) # the core functionality is a one-liner
+    return list(merge(list1, list2)) # the core functionality is a one-liner from a builtin
 
 def valid_list(l: list) -> bool:
     # I broke this out into a separate function so we can add more
     # validity requirements later if need be. We're finding out if
-    # the lists are sorted and if they're either empty or contain only digits.
-    if l != sorted(l):
-        return False
-    for i in l:
-        if not (isinstance(i, int) or isinstance(i, float)):
+    # the input args are lists, if they are sorted, and if they're
+    # either empty or contain only digits.
+    try:
+        for i in l:
+            if not (isinstance(i, int) or isinstance(i, float)):
+                return False
+        if l != sorted(l):
             return False
+    except TypeError:
+        raise ValueError('Input argument {} is not a list.'.format(l))
     return True
 
 def main(args):
@@ -35,7 +39,12 @@ def main(args):
         split_char = all_args.index(']') + 1
     except ValueError:
         raise ValueError('This program takes two lists as input; no input lists were found.')
-    list1 = literal_eval(all_args[:split_char]) # I hate using literal_eval, for the record
+    # Transform the input string into a list (literal_eval is reasonably safe
+    # compared to e.g. eval() because it validates that the input will be
+    # evaluated to a string, number, tuple, list, dict, bool, or None.
+    # So as odd as this looks, it doesn't permit e.g. the evaluation of an
+    # expression that would import os and wipe /
+    list1 = literal_eval(all_args[:split_char])
     try:
         list2 = literal_eval(all_args[split_char:])
     except SyntaxError:
