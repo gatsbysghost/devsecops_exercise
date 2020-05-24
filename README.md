@@ -6,7 +6,7 @@ The program is designed to exit safely if fewer than two lists are provided, if 
 
 ## Requirements
 
-This program does not depend on any external packages, but it does require some of the standard library features introduced in `Python 3`. Backwards compatibility to Python 2 is not guaranteed.
+This program does not depend on any external packages, but it does require some of the standard library features introduced in Python 3. Backwards compatibility to Python 2 is not guaranteed.
 
 ## How to run this program
 
@@ -28,7 +28,9 @@ To build the container, `cd` to the directory containing the repo source files a
 
 The container can then be run using the following command:
 
-`docker run sort_two_lists [1,2,3] [4, 5, 6]`
+`docker run sort_two_lists [1, 2, 3] [4, 5, 6]`
+
+N.B.: The list literal inputs may include spaces, but the spaces are not necessary. Either way, the mechanism Python uses to parse these arguments into list structures will function.
 
 ## Unit Tests
 
