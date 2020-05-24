@@ -33,12 +33,12 @@ def main(args):
     # a list literal from bash as input. I settled on basic string slicing from sys.argv,
     # which is sort of quick and dirty, but it functions perfectly well and allows
     # for pretty simple failure detection.
-
     all_args = ''.join(args[1:]) # get input as a single list
     try:
         split_char = all_args.index(']') + 1
     except ValueError:
         raise ValueError('This program takes two lists as input; no input lists were found.')
+    
     # Transform the input string into a list (literal_eval is reasonably safe
     # compared to e.g. eval() because it validates that the input will be
     # evaluated to a string, number, tuple, list, dict, bool, or None.
