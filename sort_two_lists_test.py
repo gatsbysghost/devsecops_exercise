@@ -2,9 +2,6 @@ import unittest
 
 from sort_two_lists import sort_two_lists
 
-# Tests adapted from `problem-specifications//canonical-data.json` @ v1.3.0
-
-
 class SortTwoListsTest(unittest.TestCase):
     def test_merges_two_sorted_lists(self):
         self.assertEqual(sort_two_lists([1, 2, 7, 9], [3, 6, 8]), [1, 2, 3, 6, 7, 8, 9])
